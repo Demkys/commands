@@ -35,7 +35,8 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #ffca28;
+            color: #ffca28; /* Оранжевый цвет */
+            text-shadow: 2px 2px 5px #000; /* Тень для эффекта */
             animation: fadeIn 2s ease-in-out;
         }
 
@@ -57,7 +58,7 @@
 
         ul li {
             background-color: #2c2c2c;
-            border-left: 5px solid #ff6b6b;
+            border-left: 5px solid #ff6b6b; /* Красная граница */
             margin-bottom: 10px;
             padding: 15px;
             font-size: 1.1rem;
@@ -80,20 +81,20 @@
         }
 
         ul li:hover {
-            background-color: #3b3b3b;
-            border-color: #ffca28;
+            background-color: #3b3b3b; /* Светлее при наведении */
+            border-color: #ffca28; /* Оранжевая граница при наведении */
         }
 
         ul li span {
             font-weight: bold;
-            color: #f44336;
+            color: #f44336; /* Красный цвет для выделения */
         }
 
         .note {
             margin-top: 20px;
             padding: 15px;
             background-color: #263238;
-            border-left: 5px solid #4a90e2;
+            border-left: 5px solid #4a90e2; /* Синяя граница для заметки */
             border-radius: 5px;
         }
 
@@ -128,18 +129,18 @@
             }
         }
 
-        /* Добавление осенних листьев */
-        .leaves {
+        /* Добавление хэллоуинского фона */
+        .halloween {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none; /* Чтобы не мешать взаимодействию с контейнером */
-            background-image: url('https://cdn.pixabay.com/photo/2016/11/21/17/31/autumn-1841152_1280.png');
+            background-image: url('https://cdn.pixabay.com/photo/2020/10/06/09/45/halloween-5630542_1280.png'); /* Изображение хэллоуина */
             background-repeat: no-repeat;
             background-size: cover;
-            opacity: 0.3; /* Прозрачность для мягкого эффекта */
+            opacity: 0.2; /* Прозрачность для мягкого эффекта */
             z-index: -1;
         }
 
@@ -176,7 +177,7 @@
 
     <!-- Звёздное небо на заднем фоне -->
     <div class="stars"></div>
-    <div class="leaves"></div> <!-- Осенние листья -->
+    <div class="halloween"></div> <!-- Хэллоуинские элементы -->
 
     <div class="container">
         <h1>Команды бота</h1>
@@ -216,3 +217,4 @@
     </div>
 </body>
 </html>
+
