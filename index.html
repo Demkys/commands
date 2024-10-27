@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Команды Бота</title>
+    <link rel="icon" href="sbfma7pb (1).png" type="image/png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin: 0;
+            overflow-x: hidden;
+            padding: 0 10px;
+            user-select: none;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffca28;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background-color: #2c2c2c;
+            border-left: 5px solid #ff6b6b;
+            margin-bottom: 10px;
+            padding: 15px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slideIn 0.5s forwards;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        ul li:hover {
+            background-color: #3b3b3b;
+            border-color: #ffca28;
+        }
+
+        ul li span {
+            font-weight: bold;
+            color: #f44336;
+        }
+
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #263238;
+            border-left: 5px solid #4a90e2;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150%;
+            background: black url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: moveStars 50s linear infinite;
+            transform: translateZ(0);
+        }
+
+        @keyframes moveStars {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 2000px -1000px;
+            }
+        }
+
+        html, body {
+            min-height: 100%;
+        }
+
+        .container {
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            ul li {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+    <div class="stars"></div>
+
+    <div class="container">
+        <h1>Команды Бота</h1>
+
+        <ul>
+            <li style="animation-delay: 0.2s;">/ban - 🚫 <span>Забанить</span> пользователя</li>
+            <li style="animation-delay: 0.3s;">/unban - ✔️ <span>Разбанить</span> пользователя</li>
+            <li style="animation-delay: 0.4s;">/mute - 🔕 <span>Заглушить</span> пользователя</li>
+            <li style="animation-delay: 0.5s;">/unmute - 🔔 <span>Размутить</span> пользователя</li>
+            <li style="animation-delay: 0.6s;">/stop - 🛑 <span>Остановить</span> бота</li>
+            <li style="animation-delay: 0.7s;">/q - 🎃 <span>Создать цитату</span> из сообщения</li>
+            <li style="animation-delay: 0.8s;">/begin - 👻 <span>Начать отсчет воздержания</span></li>
+            <li style="animation-delay: 0.9s;">/sliv - ⚠️ <span>Зафиксировать рецидив</span></li>
+            <li style="animation-delay: 1s;">/top - 🏅 <span>Топ участников по воздержанию</span></li>
+            <li style="animation-delay: 1.1s;">/wiki - 📖 <span>Искать информацию в Википедии</span></li>
+            <li style="animation-delay: 1.2s;">/cm - 📜 <span>Показать доступные команды</span></li>
+            <li style="animation-delay: 1.3s;">/voice - 🎙️ <span>Озвучить текст</span></li>
+            <li style="animation-delay: 1.4s;">кто я - 👤 <span>Получить информацию о себе</span></li>
+            <li style="animation-delay: 1.5s;">кто ты - 🤖 <span>Получить информацию о боте</span></li>
+            <li style="animation-delay: 1.6s;">недрочабрь - ⏳ <span>Узнать время до конца октября</span></li>
+            <li style="animation-delay: 1.7s;">перевод - 🔄 <span>Перевести текст с английского на русский</span></li>
+            <li style="animation-delay: 1.8s;">translate - 🔄 <span>Перевести текст с русского на английский</span></li>
+            <li style="animation-delay: 1.9s;">прогресс - 📊 <span>Узнать свой прогресс в воздержании</span></li>
+            <li style="animation-delay: 2s;">изображение или img - 🖼️ <span>Поиск изображений по запросу</span></li>
+            <li style="animation-delay: 2.1s;">новая инфа или бот инфа - 🔮 <span>Получить случайный ответ о вероятности</span></li>
+            <li style="animation-delay: 2.2s;">/warn - ⚠️ <span>Предупредить</span> пользователя</li>
+            <li style="animation-delay: 2.3s;">/reset_warn - 🔄 <span>Сбросить предупреждения</span> пользователя</li>
+            <li style="animation-delay: 2.4s;">+должность - 🌟 <span>Назначить роль</span> пользователю</li>
+            <li style="animation-delay: 2.5s;">/crypto - 💰 <span>Узнать стоимость криптовалют</span></li>
+            <li style="animation-delay: 2.6s;">/rules - 📜 <span>Получить правила сообщества</span></li>
+            <li style="animation-delay: 2.7s;">/about - ℹ️ <span>Узнать информацию о боте</span></li>
+        </ul>
+
+        <div class="note">
+            Используйте команды в соответствии с вашими правами и возможностями в сообществе.
+        </div>
+
+        <footer>
+            Все команды разработаны для удобного взаимодействия с ботом и пользователями.
+        </footer>
+    </div>
+
+    <script>
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J' || e.key === 'c' || e.key === 'C')) {
+                return false;
+            }
+        };
+    </script>
+</body>
+</html>
