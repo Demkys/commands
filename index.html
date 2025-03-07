@@ -3,217 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Команды бота</title>
-    <link rel="icon" href="sbfma7pb (1).png" type="image/png">
+    <title>Список команд</title>
+    <link rel="icon" href="tjzju9hk.png" type="image/png">
     <style>
-        /* Общие стили для всей страницы */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #000000; /* Чёрный фон */
+            background: linear-gradient(135deg, #2e2e2e, #151515);
             color: #e0e0e0;
-            line-height: 1.6;
             margin: 0;
+            padding: 0;
             overflow-x: hidden;
-            padding: 0 10px; /* Отступ для мобильных устройств */
-            user-select: none; /* Запрет выделения текста */
+            height: 100vh;
         }
 
-        /* Контейнер с командами */
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background-color: #1e1e1e; /* Темный фон контейнера */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            z-index: 10;
-            position: relative;
-        }
-
-        /* Анимация заголовка */
         h1 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #ffca28; /* Ярко-желтый цвет */
-            text-shadow: 2px 2px 5px #000; /* Тень для эффекта */
-            animation: fadeIn 2s ease-in-out;
+            color: #50D0FF;
+            margin: 20px 0;
         }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li {
-            background-color: #2c2c2c; /* Темный фон для элементов списка */
-            border-left: 5px solid #ff6b6b; /* Красная граница */
-            margin-bottom: 10px;
-            padding: 15px;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s, border-color 0.3s;
-            opacity: 0; /* Начальная прозрачность для анимации */
-            transform: translateX(-100%); /* Сдвиг влево для анимации */
-            animation: slideIn 0.5s forwards; /* Применение анимации */
-        }
-
-        @keyframes slideIn {
-            0% {
-                transform: translateX(-100%); /* Начальная позиция */
-                opacity: 0; /* Начальная прозрачность */
-            }
-            100% {
-                transform: translateX(0); /* Конечная позиция */
-                opacity: 1; /* Полная видимость */
-            }
-        }
-
-        ul li:hover {
-            background-color: #3b3b3b; /* Светлее при наведении */
-            border-color: #ffca28; /* Ярко-желтая граница при наведении */
-        }
-
-        ul li span {
-            font-weight: bold;
-            color: #f44336; /* Красный цвет для выделения */
-        }
-
-        .note {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #263238; /* Тёмный фон для заметки */
-            border-left: 5px solid #4a90e2; /* Синяя граница для заметки */
-            border-radius: 5px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #999;
-        }
-
-        /* Фон со звёздами с параллакс-эффектом */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 150%;
-            background: black url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-            z-index: -1;
-            animation: moveStars 50s linear infinite; /* Увеличенная скорость движения звезд */
-            transform: translateZ(0);
-            will-change: transform;
-        }
-
-        /* Плавное движение звёзд */
-        @keyframes moveStars {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 2000px -1000px; /* Изменено направление движения */
-            }
-        }
-
-        /* Добавление хэллоуинских элементов */
-        .halloween {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* Чтобы не мешать взаимодействию с контейнером */
-            background-image: url('https://cdn.pixabay.com/photo/2020/10/06/09/45/halloween-5630542_1280.png'); /* Изображение хэллоуина */
-            background-repeat: no-repeat;
-            background-size: cover;
-            opacity: 0.15; /* Прозрачность для мягкого эффекта */
-            z-index: -1;
-        }
-
-        /* Параллакс-эффект при прокрутке */
-        .stars {
-            background-attachment: fixed;
-        }
-
-        /* Контейнер должен корректно реагировать на высоту контента */
-        html, body {
-            min-height: 100%;
-        }
         .container {
-            margin-bottom: 50px;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #222;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
-        /* Мобильная адаптация */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
+        .command-card {
+            background: linear-gradient(135deg, #3a3a3a, #4b4b4b);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
 
-            ul li {
-                font-size: 1rem;
-            }
+        .command-card:hover {
+            transform: scale(1.05);
+        }
 
-            .container {
-                padding: 20px;
-            }
+        .command-card span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FF5E57;
+        }
+
+        .command-card p {
+            color: #b0b0b0;
         }
     </style>
 </head>
-<body oncontextmenu="return false;"> <!-- Отключение правой кнопки мыши -->
+<body>
+    <h1>Список команд бота</h1>
+    <div class="container" id="commandsContainer"></div>
 
-    <!-- Звёздное небо на заднем фоне -->
-    <div class="stars"></div>
-    <div class="halloween"></div> <!-- Хэллоуинские элементы -->
+    <script>
+        const commands = [
+            { icon: '🆘', name: '/help', description: 'Показать список доступных команд.' },
+            { icon: '🚀', name: '/start', description: 'Запуск бота и приветственное сообщение.' },
+            { icon: '📅', name: '/begin', description: 'Начать отсчёт воздержания.' },
+            { icon: '🔄', name: '/sliv', description: 'Зафиксировать рецидив и сбросить отсчет.' },
+            { icon: '📊', name: '/top', description: 'Показать топ пользователей по воздержанию.' },
+            { icon: '👤', name: 'кто я', description: 'Показать ваш статус воздержания.' },
+            { icon: '👤', name: 'кто ты', description: 'Показать статус воздержания другого пользователя.' },
+            { icon: '⏳', name: '/progress', description: 'Ваш прогресс воздержания в графике.' },
+            { icon: '🔇', name: '/mute', description: 'Заглушить участника.' },
+            { icon: '🔓', name: '/unmute', description: 'Снять мут с пользователя.' },
+            { icon: '🚫', name: '/ban', description: 'Забанить пользователя.' },
+            { icon: '🔨', name: '/kick', description: 'Выгнать участника.' },
+            { icon: '🔄', name: '/unban', description: 'Разбанить пользователя.' },
+            { icon: '⚠️', name: '/warn', description: 'Выдать предупреждение пользователю.' },
+            { icon: '🔍', name: '/wiki', description: 'Поиск информации в Википедии.' },
+            { icon: '💰', name: '/crypto', description: 'Курс криптовалют.' },
+            { icon: '📋', name: '/cm', description: 'Вывести список команд.' },
+            { icon: '🔮', name: 'бот инфа', description: 'Предсказать вероятность чего-либо.' },
+            { icon: '📍', name: 'закреп', description: 'Закрепить сообщение.' },
+            { icon: '📍', name: 'открепить', description: 'Открепить сообщение.' },
+            { icon: '🔒', name: '/stop', description: 'Остановить бота.' }
+        ];
 
-    <div class="container">
-        <h1>Команды бота</h1>
-
-        <ul>
-            <li style="animation-delay: 0.4s;">/ban - 🚫 Забанить пользователя</li>
-            <li style="animation-delay: 0.6s;">/unban - ✔️ Разбанить пользователя</li>
-            <li style="animation-delay: 0.8s;">/mute - 🔕 Заглушить пользователя</li>
-            <li style="animation-delay: 1s;">/unmute - 🔔 Размутить пользователя</li>
-            <li style="animation-delay: 1.4s;">/stop - 🛑 Остановить бота</li>
-            <li style="animation-delay: 1.8s;">/q - 🎃 Создать цитату из сообщения</li>
-            <li style="animation-delay: 2s;">/begin - 👻 Начать отсчет воздержания</li>
-            <li style="animation-delay: 2.2s;">/sliv - ⚠️ Зафиксировать рецидив</li>
-            <li style="animation-delay: 2.4s;">/top - 🏅 Топ участников по воздержанию</li>
-            <li style="animation-delay: 2.8s;">/wiki - 📖 Искать информацию в Википедии</li>
-            <li style="animation-delay: 3s;">/cm - 📜 Показать доступные команды</li>
-            <li style="animation-delay: 3.2s;">/voice - 🎙️ Озвучить текст</li>
-            <li style="animation-delay: 3.6s;">кто я - 👤 Получить информацию о себе</li>
-            <li style="animation-delay: 3.8s;">кто ты - 🤖 Получить информацию о боте</li>
-            <li style="animation-delay: 4s;">недрочабрь - ⏳ Узнать время до конца октября</li>
-            <li style="animation-delay: 4.2s;">перевод - 🔄 Перевести текст с английского на русский</li>
-            <li style="animation-delay: 4.4s;">translate - 🔄 Перевести текст с русского на английский</li>
-            <li style="animation-delay: 4.6s;">прогресс - 📊 Узнать свой прогресс в воздержании</li>
-            <li style="animation-delay: 4.8s;">изображение или img - 🖼️ Поиск изображений по запросу</li>
-            <li style="animation-delay: 5s;">новая инфа или бот инфа - 🔮 Получить случайный ответ о вероятности</li>
-            <li style="animation-delay: 5.4s;">/warn - ⚠️ Предупредить пользователя</li>
-            <li style="animation-delay: 5.6s;">/reset_warn - 🔄 Сбросить предупреждения пользователя</li>
-            <li style="animation-delay: 5.8s;">+должность - 🌟 Назначить роль пользователю</li>
-            <li style="animation-delay: 6.2s;">/crypto - 💰 Узнать стоимость криптовалют</li>
-            <li style="animation-delay: 6.4s;">/rules - 📜 Получить правила сообщества</li>
-            <li style="animation-delay: 6.6s;">/about - ℹ️ Узнать информацию о боте</li>
-        </ul>
-
-        <footer>
-            Администрация оставляет за собой право вносить изменения в команды без обязательного уведомления участников.
-        </footer>
-    </div>
+        const container = document.getElementById("commandsContainer");
+        commands.forEach(cmd => {
+            const card = document.createElement("div");
+            card.classList.add("command-card");
+            card.innerHTML = `<div class="icon">${cmd.icon}</div>
+                              <span>${cmd.name}</span>
+                              <p>${cmd.description}</p>`;
+            container.appendChild(card);
+        });
+    </script>
 </body>
 </html>
