@@ -1,99 +1,152 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список команд</title>
-    <link rel="icon" href="tjzju9hk.png" type="image/png">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #2e2e2e, #151515);
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Команды бота</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --fg: #e0e0e0;
+      --accent: #00bcd4;
+      --border: #2c2c2c;
+      --highlight: #1f1f1f;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+    }
 
-        h1 {
-            text-align: center;
-            color: #50D0FF;
-            margin: 20px 0;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #222;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
 
-        .command-card {
-            background: linear-gradient(135deg, #3a3a3a, #4b4b4b);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s ease-in-out;
-        }
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      background: #181818;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      overflow: hidden;
+    }
 
-        .command-card:hover {
-            transform: scale(1.05);
-        }
+    header {
+      background: var(--accent);
+      color: #000;
+      text-align: center;
+      padding: 2rem;
+    }
 
-        .command-card span {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #FF5E57;
-        }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
 
-        .command-card p {
-            color: #b0b0b0;
-        }
-    </style>
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    thead {
+      background: var(--highlight);
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr:hover {
+      background-color: #222;
+    }
+
+    code {
+      background: #2d2d2d;
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      color: var(--accent);
+      font-family: monospace;
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        padding: 0.5rem;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Список команд бота</h1>
-    <div class="container" id="commandsContainer"></div>
-
-    <script>
-        const commands = [
-            { icon: '🧠', name: '/gen', description: 'Спросить у нейросети.' },
-            { icon: '🚀', name: '/start', description: 'Запуск бота и приветственное сообщение.' },
-            { icon: '📅', name: '/begin', description: 'Начать отсчёт воздержания.' },
-            { icon: '🔄', name: '/sliv', description: 'Зафиксировать рецидив и сбросить отсчет.' },
-            { icon: '📊', name: '/top', description: 'Показать топ пользователей по воздержанию.' },
-            { icon: '👤', name: 'кто я', description: 'Показать ваш статус воздержания.' },
-            { icon: '👤', name: 'кто ты', description: 'Показать статус воздержания другого пользователя.' },
-            { icon: '⏳', name: '/progress', description: 'Ваш прогресс воздержания в графике.' },
-            { icon: '🔇', name: '/mute', description: 'Заглушить участника.' },
-            { icon: '🔓', name: '/unmute', description: 'Снять мут с пользователя.' },
-            { icon: '🚫', name: '/ban', description: 'Забанить пользователя.' },
-            { icon: '🔄', name: '/unban', description: 'Разбанить пользователя.' },
-            { icon: '⚠️', name: '/warn', description: 'Выдать предупреждение пользователю.' },
-            { icon: '🔍', name: '/wiki', description: 'Поиск информации в Википедии.' },
-            { icon: '💰', name: '/crypto', description: 'Курс криптовалют.' },
-            { icon: '📋', name: '/cm', description: 'Вывести список команд.' },
-            { icon: '🔮', name: 'бот инфа', description: 'Предсказать вероятность чего-либо.' },
-            { icon: '📍', name: 'закреп', description: 'Закрепить сообщение.' },
-            { icon: '📍', name: 'открепить', description: 'Открепить сообщение.' },
-            { icon: '🔒', name: '/stop', description: 'Остановить бота.' }
-        ];
-
-        const container = document.getElementById("commandsContainer");
-        commands.forEach(cmd => {
-            const card = document.createElement("div");
-            card.classList.add("command-card");
-            card.innerHTML = `<div class="icon">${cmd.icon}</div>
-                              <span>${cmd.name}</span>
-                              <p>${cmd.description}</p>`;
-            container.appendChild(card);
-        });
-    </script>
+  <div class="container">
+    <header>
+      <h1>Команды бота</h1>
+      <p>Команды и триггеры</p>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Команда / Триггер</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/start</code></td><td>Отправляет приветственное сообщение с инструкциями.</td></tr>
+          <tr><td><code>/begin</code></td><td>Запускает отслеживание воздержания, позволяет выбрать дату начала.</td></tr>
+          <tr><td><code>/sliv</code></td><td>Фиксирует рецидив, предлагает перерыв или перезапуск.</td></tr>
+          <tr><td><code>/cm</code>, <code>команды</code>, <code>нова команды</code></td><td>Ссылка на веб-страницу со списком всех команд.</td></tr>
+          <tr><td><code>/top</code>, <code>ранг</code></td><td>Показывает топ пользователей по длительности воздержания.</td></tr>
+          <tr><td><code>/progress</code>, <code>прогресс</code></td><td>Прогресс-бар воздержания (по умолчанию 30 дней).</td></tr>
+          <tr><td><code>/stop</code></td><td>Останавливает бота (только для администраторов).</td></tr>
+          <tr><td><code>/wiki</code>, <code>вики</code></td><td>Поиск на Википедии с кратким описанием и изображением.</td></tr>
+          <tr><td><code>/promo</code></td><td>Активирует промокод для добавления NFC на баланс.</td></tr>
+          <tr><td><code>/q</code></td><td>Создает стикер из отвеченного сообщения.</td></tr>
+          <tr><td><code>/rules</code>, <code>правила</code>, <code>нова правила</code></td><td>Ссылка на правила группы.</td></tr>
+          <tr><td><code>/ban</code>, <code>бан</code></td><td>Банит пользователя (только для администраторов).</td></tr>
+          <tr><td><code>/unban</code>, <code>разбан</code></td><td>Разбанивает пользователя (только для администраторов).</td></tr>
+          <tr><td><code>/mute</code>, <code>мут</code></td><td>Замалчивает пользователя на указанный срок (только для администраторов).</td></tr>
+          <tr><td><code>/warn</code>, <code>нова варн</code>, <code>предупредить</code></td><td>Выдает предупреждение пользователю (только для администраторов).</td></tr>
+          <tr><td><code>/checkwarn</code>, <code>проверить предупреждения</code></td><td>Проверяет предупреждения пользователя.</td></tr>
+          <tr><td><code>сбросить предупреждения</code></td><td>Сбрасывает все предупреждения (только для администраторов).</td></tr>
+          <tr><td><code>сбросить предупреждение</code></td><td>Удаляет конкретное предупреждение (только для администраторов).</td></tr>
+          <tr><td><code>нова удалить</code> (в ответ)</td><td>Удаляет ответное сообщение (только для администраторов).</td></tr>
+          <tr><td><code>закреп</code>, <code>закрепить</code> (в ответ)</td><td>Закрепляет сообщение (только для администраторов).</td></tr>
+          <tr><td><code>открепить</code>, <code>unpin</code> (в ответ)</td><td>Открепляет сообщение (только для администраторов).</td></tr>
+          <tr><td><code>бот</code>, <code>нова</code></td><td>Проверяет статус и время ответа бота.</td></tr>
+          <tr><td><code>кто я</code>, <code>хто я</code>, <code>кто я?</code></td><td>Показывает статус воздержания (дни, рецидивы, значок).</td></tr>
+          <tr><td><code>бот инфа</code>, <code>нова инфа</code></td><td>Дает случайный процент вероятности для запроса.</td></tr>
+          <tr><td><code>мои монеты</code></td><td>Показывает баланс NFC.</td></tr>
+          <tr><td><code>магазин</code></td><td>Открывает магазин стилей за NFC (только в лс с ботом).</td></tr>
+          <tr><td><code>мои стили</code></td><td>Показывает доступные стили для выбора.</td></tr>
+          <tr><td><code>обо мне</code></td><td>Генерирует изображение текущего прогресса с учетом выбранного стиля.</td></tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
 </body>
 </html>
