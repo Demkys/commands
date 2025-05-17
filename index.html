@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nova | Команды</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +26,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
@@ -33,18 +34,20 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 1rem;
         }
         
         header {
             text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
             position: relative;
         }
         
@@ -54,16 +57,16 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
+            width: 80px;
             height: 4px;
             background: linear-gradient(90deg, var(--accent), var(--accent-hover));
             border-radius: 2px;
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             background: linear-gradient(90deg, var(--accent), var(--accent-hover));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -73,15 +76,16 @@
         
         .subtitle {
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1rem;
             max-width: 600px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
         
         .search-wrapper {
             position: relative;
             max-width: 600px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2rem;
         }
         
         .search-icon {
@@ -103,6 +107,7 @@
             font-family: inherit;
             transition: all 0.3s ease;
             box-shadow: var(--shadow);
+            -webkit-appearance: none;
         }
         
         #search:focus {
@@ -116,10 +121,18 @@
         
         .categories {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+            flex-wrap: nowrap;
+            gap: 0.5rem;
             margin-bottom: 2rem;
-            justify-content: center;
+            justify-content: flex-start;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .categories::-webkit-scrollbar {
+            display: none;
         }
         
         .category-filter {
@@ -131,6 +144,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 500;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .category-filter:hover {
@@ -145,13 +164,14 @@
         }
         
         .category {
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
         
         .category-header {
             display: flex;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
+            padding: 0 0.5rem;
         }
         
         .category-icon {
@@ -162,35 +182,35 @@
             justify-content: center;
             background-color: var(--tag-bg);
             border-radius: 8px;
-            margin-right: 1rem;
+            margin-right: 0.75rem;
             color: var(--accent);
+            flex-shrink: 0;
         }
         
         .category-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: var(--text-primary);
         }
         
         .commands-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr;
+            gap: 1rem;
         }
         
         .command-card {
             background-color: var(--bg-card);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1.25rem;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid var(--border);
+            position: relative;
         }
         
-        .command-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent);
+        .command-card:active {
+            transform: scale(0.98);
         }
         
         .command-triggers {
@@ -208,6 +228,7 @@
             font-size: 0.9rem;
             font-weight: 500;
             display: inline-block;
+            margin-bottom: 0.25rem;
         }
         
         .command-description {
@@ -229,7 +250,7 @@
         
         .no-results {
             text-align: center;
-            padding: 3rem;
+            padding: 2rem 1rem;
             color: var(--text-secondary);
             background-color: var(--bg-secondary);
             border-radius: 12px;
@@ -237,32 +258,112 @@
         }
         
         .no-results h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
             color: var(--text-primary);
         }
         
         footer {
             text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
             color: var(--text-secondary);
             font-size: 0.9rem;
             border-top: 1px solid var(--border);
         }
         
-        @media (max-width: 768px) {
+        .context-menu-alert {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+        
+        .context-menu-alert.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        
+        @media (min-width: 640px) {
             .commands-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .container {
+                padding: 1.5rem;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.25rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .commands-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
             
-            .category-filter {
+            .container {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .command-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+                border-color: var(--accent);
+            }
+            
+            .categories {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .category-title {
+                font-size: 1.1rem;
+            }
+            
+            .command-trigger {
+                font-size: 0.8rem;
+                padding: 0.25rem 0.6rem;
+            }
+            
+            .command-description {
                 font-size: 0.9rem;
-                padding: 0.4rem 0.8rem;
+            }
+            
+            .command-card {
+                padding: 1rem;
+            }
+        }
+        
+        @media (hover: none) {
+            .command-card {
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            .command-card:active {
+                background-color: var(--bg-secondary);
+            }
+            
+            .category-filter:active {
+                opacity: 0.8;
             }
         }
     </style>
@@ -287,14 +388,13 @@
         <div class="categories">
             <button class="category-filter active" data-category="all">Все команды</button>
             <button class="category-filter" data-category="tracking">Воздержание</button>
-            <button class="category-filter" data-category="admin">Администрирование</button>
+            <button class="category-filter" data-category="admin">Админ</button>
             <button class="category-filter" data-category="utility">Утилиты</button>
             <button class="category-filter" data-category="fun">Развлечения</button>
             <button class="category-filter" data-category="currency">Валюта</button>
         </div>
         
         <div id="commands-container">
-            <!-- Команды будут добавлены с помощью JavaScript -->
         </div>
         
         <div id="no-results" class="no-results" style="display: none;">
@@ -307,8 +407,8 @@
         </footer>
     </div>
     
+    
     <script>
-        // Данные о командах (объединенные похожие команды)
         const commandsData = [
             {
                 category: "tracking",
@@ -465,6 +565,56 @@
                         triggers: ["бот инфа [вопрос]", "нова инфа [вопрос]"],
                         description: "Получить случайный процентный ответ на ваш вопрос.",
                         isAdmin: false
+                    },
+                    {
+                        triggers: ["обнять"],
+                        description: "Обнять пользователя, на сообщение которого вы отвечаете.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["поцеловать"],
+                        description: "Поцеловать пользователя, на сообщение которого вы отвечаете.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["ударить"],
+                        description: "Ударить пользователя, на сообщение которого вы отвечаете.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["расстрелять"],
+                        description: "Расстрелять пользователя, на сообщение которого вы отвечаете.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["погладить"],
+                        description: "Погладить пользователя, на сообщение которого вы отвечаете.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["укусить"],
+                        description: "Укусить пользователя, на сообщение которого вы отвечаете.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["подмигнуть"],
+                        description: "Подмигнуть пользователю, на сообщение которого вы отвечаете.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["убить"],
+                        description: "Убить пользователя, на сообщение которого вы отвечаете.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["сжечь"],
+                        description: "Сжечь пользователя, на сообщение которого вы отвечаете.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["кинуть"],
+                        description: "Кинуть что-то в пользователя, на сообщение которого вы отвечаете.",
+                        isAdmin: false
                     }
                 ]
             },
@@ -507,7 +657,6 @@
             }
         ];
         
-        // Функция для отображения команд
         function renderCommands(filteredCommands = null, categoryFilter = 'all') {
             const container = document.getElementById('commands-container');
             const noResults = document.getElementById('no-results');
@@ -581,7 +730,6 @@
             noResults.style.display = hasResults ? 'none' : 'block';
         }
         
-        // Функция для фильтрации команд по поиску
         function filterCommands(query, categoryFilter = 'all') {
             if (!query && categoryFilter === 'all') {
                 renderCommands(null, 'all');
@@ -610,13 +758,11 @@
             renderCommands(filtered, categoryFilter);
         }
         
-        // Обработчик поиска
         document.getElementById('search').addEventListener('input', function(e) {
             const activeCategory = document.querySelector('.category-filter.active').dataset.category;
             filterCommands(e.target.value, activeCategory);
         });
         
-        // Обработчик фильтров категорий
         document.querySelectorAll('.category-filter').forEach(button => {
             button.addEventListener('click', function() {
                 document.querySelectorAll('.category-filter').forEach(btn => {
@@ -630,10 +776,51 @@
             });
         });
         
-        // Инициализация страницы
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            
+            const alert = document.getElementById('context-menu-alert');
+            alert.classList.add('show');
+            
+            setTimeout(() => {
+                alert.classList.remove('show');
+            }, 2000);
+            
+            return false;
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+            
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
         document.addEventListener('DOMContentLoaded', function() {
             renderCommands();
+            
+            setTimeout(() => {
+                const activeFilter = document.querySelector('.category-filter.active');
+                if (activeFilter) {
+                    const categories = document.querySelector('.categories');
+                    categories.scrollLeft = activeFilter.offsetLeft - categories.offsetWidth / 2 + activeFilter.offsetWidth / 2;
+                }
+            }, 100);
         });
+        
+        document.addEventListener('dblclick', function(e) {
+            e.preventDefault();
+        }, { passive: false });
     </script>
 </body>
 </html>
