@@ -1,151 +1,639 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Команды бота</title>
-  <style>
-    :root {
-      --bg: #121212;
-      --fg: #e0e0e0;
-      --accent: #00bcd4;
-      --border: #2c2c2c;
-      --highlight: #1f1f1f;
-      font-size: 16px;
-      font-family: 'Inter', sans-serif;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background-color: var(--bg);
-      color: var(--fg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      min-height: 100vh;
-    }
-    .container {
-      width: 100%;
-      max-width: 1000px;
-      background: #181818;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-      overflow: hidden;
-    }
-    header {
-      background: var(--accent);
-      color: #000;
-      text-align: center;
-      padding: 1.5rem 1rem;
-    }
-    header h1 {
-      font-size: 2rem;
-      font-weight: 600;
-    }
-    header p {
-      font-size: 1rem;
-      opacity: 0.9;
-      margin-top: 0.5rem;
-    }
-    main {
-      padding: 1.5rem 1rem;
-      overflow-x: auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-      font-size: 0.95rem;
-    }
-    thead {
-      background: var(--highlight);
-    }
-    th, td {
-      padding: 0.75rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      word-break: break-word;
-    }
-    tbody tr:hover {
-      background-color: #222;
-    }
-    code {
-      background: #2d2d2d;
-      padding: 0.2rem 0.4rem;
-      border-radius: 6px;
-      color: var(--accent);
-      font-family: monospace;
-      font-size: 0.95rem;
-    }
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-      header p {
-        font-size: 0.9rem;
-      }
-      th, td {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-      }
-      code {
-        font-size: 0.85rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Commander | Команды</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f0f13;
+            --bg-secondary: #1a1a22;
+            --bg-card: #23232d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b8;
+            --accent: #7c5dfa;
+            --accent-hover: #9277ff;
+            --border: #2d2d3a;
+            --tag-bg: rgba(124, 93, 250, 0.15);
+            --tag-text: #9277ff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            border-radius: 2px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-wrapper {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+        
+        #search {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        
+        #search:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        #search::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        
+        .category-filter {
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .category-filter:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+        
+        .category-filter.active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        
+        .category {
+            margin-bottom: 3rem;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .category-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--tag-bg);
+            border-radius: 8px;
+            margin-right: 1rem;
+            color: var(--accent);
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .command-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        
+        .command-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+        
+        .command-triggers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .command-trigger {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .command-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .admin-badge {
+            background-color: rgba(255, 59, 48, 0.15);
+            color: #ff3b30;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        @media (max-width: 768px) {
+            .commands-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .category-filter {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Команды бота</h1>
-      <p>Команды и триггеры</p>
-    </header>
-    <main>
-      <table>
-        <thead>
-          <tr>
-            <th>Команда / Триггер</th>
-            <th>Описание</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>/start</code></td><td>Отправляет приветственное сообщение с инструкциями.</td></tr>
-          <tr><td><code>/begin</code></td><td>Запускает отслеживание воздержания, позволяет выбрать дату начала.</td></tr>
-          <tr><td><code>/sliv</code></td><td>Фиксирует рецидив, предлагает перерыв или перезапуск.</td></tr>
-          <tr><td><code>/cm</code>, <code>команды</code>, <code>нова команды</code></td><td>Ссылка на веб-страницу со списком всех команд.</td></tr>
-          <tr><td><code>/top</code>, <code>ранг</code></td><td>Показывает топ пользователей по длительности воздержания.</td></tr>
-          <tr><td><code>/progress</code>, <code>прогресс</code></td><td>Прогресс-бар воздержания (по умолчанию 30 дней).</td></tr>
-          <tr><td><code>/stop</code></td><td>Останавливает бота (только для администраторов).</td></tr>
-          <tr><td><code>/wiki</code>, <code>вики</code></td><td>Поиск на Википедии с кратким описанием и изображением.</td></tr>
-          <tr><td><code>/promo</code></td><td>Активирует промокод для добавления NFC на баланс.</td></tr>
-          <tr><td><code>/q</code></td><td>Создает стикер из отвеченного сообщения.</td></tr>
-          <tr><td><code>/rules</code>, <code>правила</code>, <code>нова правила</code></td><td>Ссылка на правила группы.</td></tr>
-          <tr><td><code>/ban</code>, <code>бан</code></td><td>Банит пользователя (только для администраторов).</td></tr>
-          <tr><td><code>/unban</code>, <code>разбан</code></td><td>Разбанивает пользователя (только для администраторов).</td></tr>
-          <tr><td><code>/mute</code>, <code>мут</code></td><td>Замалчивает пользователя на указанный срок (только для администраторов).</td></tr>
-          <tr><td><code>/warn</code>, <code>нова варн</code>, <code>предупредить</code></td><td>Выдает предупреждение пользователю (только для администраторов).</td></tr>
-          <tr><td><code>/checkwarn</code>, <code>проверить предупреждения</code></td><td>Проверяет предупреждения пользователя.</td></tr>
-          <tr><td><code>сбросить предупреждения</code></td><td>Сбрасывает все предупреждения (только для администраторов).</td></tr>
-          <tr><td><code>сбросить предупреждение</code></td><td>Удаляет конкретное предупреждение (только для администраторов).</td></tr>
-          <tr><td><code>нова удалить</code> (в ответ)</td><td>Удаляет ответное сообщение (только для администраторов).</td></tr>
-          <tr><td><code>закреп</code>, <code>закрепить</code> (в ответ)</td><td>Закрепляет сообщение (только для администраторов).</td></tr>
-          <tr><td><code>открепить</code>, <code>unpin</code> (в ответ)</td><td>Открепляет сообщение (только для администраторов).</td></tr>
-          <tr><td><code>бот</code>, <code>нова</code></td><td>Проверяет статус и время ответа бота.</td></tr>
-          <tr><td><code>кто я</code>, <code>хто я</code>, <code>кто я?</code></td><td>Показывает статус воздержания (дни, рецидивы, значок).</td></tr>
-          <tr><td><code>бот инфа</code>, <code>нова инфа</code></td><td>Дает случайный процент вероятности для запроса.</td></tr>
-          <tr><td><code>мои монеты</code></td><td>Показывает баланс NFC.</td></tr>
-          <tr><td><code>магазин</code></td><td>Открывает магазин стилей за NFC (только в лс с ботом).</td></tr>
-          <tr><td><code>мои стили</code></td><td>Показывает доступные стили для выбора.</td></tr>
-          <tr><td><code>обо мне</code></td><td>Генерирует изображение текущего прогресса с учетом выбранного стиля.</td></tr>
-          <tr><td><code>Рекорд=</code> <i>(число дней)</i></td><td>Устанавливает новый личный рекорд по количеству дней воздержания.</td></tr>
-          <tr><td><code>Рецидивы=</code> <i>(число рецидивов)</i></td><td>Устанавливает новое количество зафиксированных рецидивов.</td></tr>
-        </tbody>
-      </table>
-    </main>
-  </div>
+    <div class="container">
+        <header>
+            <h1>Nova Commander</h1>
+            <p class="subtitle">Полный список команд Telegram бота</p>
+        </header>
+        
+        <div class="search-wrapper">
+            <div class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+            <input type="text" id="search" placeholder="Поиск команд...">
+        </div>
+        
+        <div class="categories">
+            <button class="category-filter active" data-category="all">Все команды</button>
+            <button class="category-filter" data-category="tracking">Воздержание</button>
+            <button class="category-filter" data-category="admin">Администрирование</button>
+            <button class="category-filter" data-category="utility">Утилиты</button>
+            <button class="category-filter" data-category="fun">Развлечения</button>
+            <button class="category-filter" data-category="currency">Валюта</button>
+        </div>
+        
+        <div id="commands-container">
+            <!-- Команды будут добавлены с помощью JavaScript -->
+        </div>
+        
+        <div id="no-results" class="no-results" style="display: none;">
+            <h3>Команды не найдены</h3>
+            <p>Попробуйте изменить поисковый запрос или выбрать другую категорию</p>
+        </div>
+        
+        <footer>
+            <p>© 2025 Nova Commander Bot</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Данные о командах (объединенные похожие команды)
+        const commandsData = [
+            {
+                category: "tracking",
+                icon: "📊",
+                title: "Отслеживание воздержания",
+                commands: [
+                    {
+                        triggers: ["/begin"],
+                        description: "Начать отсчет воздержания. Можно указать произвольную дату начала.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["/sliv"],
+                        description: "Сбросить счетчик воздержания после рецидива.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["кто я", "хто я", "кто я?"],
+                        description: "Проверить текущий статус воздержания и бейдж.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["обо мне"],
+                        description: "Показать информацию о воздержании со стилизованным изображением.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["/progress", "прогресс [число]"],
+                        description: "Показать прогресс за указанное количество дней.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["/streak"],
+                        description: "Показать серию воздержания с изображением огня.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["ранг", "топ", "/top"],
+                        description: "Показать топ пользователей по длительности воздержания в текущем чате.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["Сливы = число"],
+                        description: "Установить количество рецидивов на указанное число.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["Рекорд = число"],
+                        description: "Установить рекорд воздержания на указанное число дней.",
+                        isAdmin: false
+                    }
+                ]
+            },
+            {
+                category: "admin",
+                icon: "🛡️",
+                title: "Команды администратора",
+                commands: [
+                    {
+                        triggers: ["бан @username", "/ban @username"],
+                        description: "Забанить пользователя в чате.",
+                        isAdmin: true
+                    },
+                    {
+                        triggers: ["мут @username", "/mute @username"],
+                        description: "Заглушить пользователя на указанное время.",
+                        isAdmin: true
+                    },
+                    {
+                        triggers: ["разбан @username", "/unban @username"],
+                        description: "Разбанить пользователя в чате.",
+                        isAdmin: true
+                    },
+                    {
+                        triggers: ["/warn", "нова варн", "нова предупредить", "предупредить"],
+                        description: "Выдать предупреждение пользователю.",
+                        isAdmin: true
+                    },
+                    {
+                        triggers: ["предупреждения", "чекнуть предупреждения", "/checkwarn"],
+                        description: "Проверить предупреждения пользователя.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["сбросить предупреждения", "сброс предупреждений", "убрать предупреждения", "удалить предупреждения"],
+                        description: "Сбросить все предупреждения пользователя.",
+                        isAdmin: true
+                    },
+                    {
+                        triggers: ["закреп", "закрепить", "pin"],
+                        description: "Закрепить сообщение в чате.",
+                        isAdmin: true
+                    },
+                    {
+                        triggers: ["открепить", "unpin"],
+                        description: "Открепить сообщение в чате.",
+                        isAdmin: true
+                    },
+                    {
+                        triggers: ["нова удалить"],
+                        description: "Удалить сообщение, на которое был дан ответ.",
+                        isAdmin: true
+                    },
+                    {
+                        triggers: ["/stop"],
+                        description: "Остановить бота.",
+                        isAdmin: true
+                    }
+                ]
+            },
+            {
+                category: "utility",
+                icon: "🔧",
+                title: "Полезные команды",
+                commands: [
+                    {
+                        triggers: ["бот", "нова"],
+                        description: "Проверить, работает ли бот.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["команды", "нова команды", "/cm"],
+                        description: "Показать список доступных команд.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["правила", "/rules", "нова правила"],
+                        description: "Показать правила чата.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["/wiki [запрос]", "вики [запрос]"],
+                        description: "Искать информацию в Википедии.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["/q"],
+                        description: "Создать стикер-цитату из сообщения.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["/feedback"],
+                        description: "Отправить отзыв о боте администраторам.",
+                        isAdmin: false
+                    }
+                ]
+            },
+            {
+                category: "fun",
+                icon: "🎮",
+                title: "Развлекательные команды",
+                commands: [
+                    {
+                        triggers: ["бот инфа [вопрос]", "нова инфа [вопрос]"],
+                        description: "Получить случайный процентный ответ на ваш вопрос.",
+                        isAdmin: false
+                    }
+                ]
+            },
+            {
+                category: "currency",
+                icon: "💰",
+                title: "Система валюты",
+                commands: [
+                    {
+                        triggers: ["монеты", "монетки", "мешок", "мой мешок", "деньги", "баланс", "мой баланс", "мои монеты", "сбережения", "карман", "кошелек", "счёт", "мой счёт", "кошелёк"],
+                        description: "Проверить баланс NFC монет.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["/promo [код]"],
+                        description: "Активировать промокод для получения NFC монет.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["передать [количество]"],
+                        description: "Передать NFC монеты другому пользователю.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["казино [количество]"],
+                        description: "Сделать ставку NFC монетами в казино.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["магазин", "shop", "купить стили", "покупка", "приобрести стиль"],
+                        description: "Открыть магазин для покупки стилей за NFC монеты.",
+                        isAdmin: false
+                    },
+                    {
+                        triggers: ["мои стили", "стили", "купленые стили", "купленные стили", "оформление", "оформления", "корман"],
+                        description: "Просмотреть и выбрать купленные стили.",
+                        isAdmin: false
+                    }
+                ]
+            }
+        ];
+        
+        // Функция для отображения команд
+        function renderCommands(filteredCommands = null, categoryFilter = 'all') {
+            const container = document.getElementById('commands-container');
+            const noResults = document.getElementById('no-results');
+            container.innerHTML = '';
+            
+            const commandsToRender = filteredCommands || commandsData;
+            let hasResults = false;
+            
+            for (const category of commandsToRender) {
+                if (categoryFilter !== 'all' && category.category !== categoryFilter) continue;
+                if (category.commands.length === 0) continue;
+                
+                hasResults = true;
+                
+                const categorySection = document.createElement('section');
+                categorySection.className = 'category';
+                categorySection.dataset.category = category.category;
+                
+                const categoryHeader = document.createElement('div');
+                categoryHeader.className = 'category-header';
+                
+                const categoryIcon = document.createElement('div');
+                categoryIcon.className = 'category-icon';
+                categoryIcon.textContent = category.icon;
+                
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'category-title';
+                categoryTitle.textContent = category.title;
+                
+                categoryHeader.appendChild(categoryIcon);
+                categoryHeader.appendChild(categoryTitle);
+                categorySection.appendChild(categoryHeader);
+                
+                const commandsGrid = document.createElement('div');
+                commandsGrid.className = 'commands-grid';
+                
+                category.commands.forEach(cmd => {
+                    const card = document.createElement('div');
+                    card.className = 'command-card';
+                    
+                    const triggers = document.createElement('div');
+                    triggers.className = 'command-triggers';
+                    
+                    cmd.triggers.forEach(trigger => {
+                        const triggerSpan = document.createElement('span');
+                        triggerSpan.className = 'command-trigger';
+                        triggerSpan.textContent = trigger;
+                        triggers.appendChild(triggerSpan);
+                    });
+                    
+                    const description = document.createElement('p');
+                    description.className = 'command-description';
+                    description.textContent = cmd.description;
+                    
+                    if (cmd.isAdmin) {
+                        const adminBadge = document.createElement('span');
+                        adminBadge.className = 'admin-badge';
+                        adminBadge.textContent = 'АДМИН';
+                        description.appendChild(adminBadge);
+                    }
+                    
+                    card.appendChild(triggers);
+                    card.appendChild(description);
+                    commandsGrid.appendChild(card);
+                });
+                
+                categorySection.appendChild(commandsGrid);
+                container.appendChild(categorySection);
+            }
+            
+            noResults.style.display = hasResults ? 'none' : 'block';
+        }
+        
+        // Функция для фильтрации команд по поиску
+        function filterCommands(query, categoryFilter = 'all') {
+            if (!query && categoryFilter === 'all') {
+                renderCommands(null, 'all');
+                return;
+            }
+            
+            query = query.toLowerCase();
+            
+            const filtered = commandsData.map(category => {
+                const filteredCommands = category.commands.filter(cmd => {
+                    const matchesQuery = !query || 
+                        cmd.triggers.some(t => t.toLowerCase().includes(query)) || 
+                        cmd.description.toLowerCase().includes(query);
+                    
+                    const matchesCategory = categoryFilter === 'all' || category.category === categoryFilter;
+                    
+                    return matchesQuery && matchesCategory;
+                });
+                
+                return {
+                    ...category,
+                    commands: filteredCommands
+                };
+            });
+            
+            renderCommands(filtered, categoryFilter);
+        }
+        
+        // Обработчик поиска
+        document.getElementById('search').addEventListener('input', function(e) {
+            const activeCategory = document.querySelector('.category-filter.active').dataset.category;
+            filterCommands(e.target.value, activeCategory);
+        });
+        
+        // Обработчик фильтров категорий
+        document.querySelectorAll('.category-filter').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.category-filter').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                const searchQuery = document.getElementById('search').value;
+                filterCommands(searchQuery, category);
+            });
+        });
+        
+        // Инициализация страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCommands();
+        });
+    </script>
 </body>
 </html>
