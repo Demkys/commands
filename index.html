@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="Полный список команд Nova Bot - современный дизайн с улучшенной функциональностью">
+    <meta name="theme-color" content="#6366f1">
+    <title>Nova | Команды</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
+</head>
+<body>
+    <div class="animated-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+    </div>
+
+    <nav class="navigation" id="navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">⭐</div>
+                <span class="brand-text">Nova Commands</span>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <a href="#tracking" class="nav-link">Воздержание</a>
+                <a href="#admin" class="nav-link">Админ</a>
+                <a href="#utility" class="nav-link">Утилиты</a>
+                <a href="#fun" class="nav-link">Развлечения</a>
+                <a href="#currency" class="nav-link">Валюта</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="reading-progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-badge">
+                    <span class="badge-icon">🤖</span>
+                    <span>Команды бота</span>
+                </div>
+                <h1 class="hero-title">
+                    Команды
+                    <span class="gradient-text">Nova</span>
+                </h1>
+                <p class="hero-description">Полный список доступных команд для эффективного использования бота Nova</p>
+                <div class="hero-actions">
+                    <a href="https://t.me/Nova_unique_bot" target="_blank" rel="noopener" class="bot-link">
+                        <span class="bot-icon">⭐</span>
+                        <span>Перейти к боту Nova</span>
+                        <span class="external-icon">↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
+            <div class="content-container">
+                
+                <div class="search-wrapper">
+                    <div class="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <input type="text" id="search" placeholder="Поиск команд...">
+                </div>
+
+                <div class="categories">
+                    <button class="category-filter active" data-category="all">Все команды</button>
+                    <button class="category-filter" data-category="tracking">Воздержание</button>
+                    <button class="category-filter" data-category="admin">Админ</button>
+                    <button class="category-filter" data-category="utility">Утилиты</button>
+                    <button class="category-filter" data-category="fun">Развлечения</button>
+                    <button class="category-filter" data-category="currency">Валюта</button>
+                </div>
+
+                <div id="commands-container"></div>
+
+                <div id="no-results" class="no-results" style="display: none;">
+                    <h3>Команды не найдены</h3>
+                    <p>Попробуйте изменить поисковый запрос или выбрать другую категорию</p>
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="footer-icon">⭐</div>
+                        <span>Nova Commands</span>
+                    </div>
+                    <div class="footer-info">
+                        <p>Последнее обновление: <time datetime="2025-07-23">23 июля 2025 года</time></p>
+                        <p>Создано с ❤️ для сообщества</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Прокрутить наверх">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
